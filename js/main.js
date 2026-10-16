@@ -226,13 +226,29 @@
   }
 
   // ══════════════════════════════════════════════════
-  //   DESKTOP İKON çift-tık seçim efekti
+  //   DESKTOP İKON çift-tık & mobil tek-dokunuş desteği
   // ══════════════════════════════════════════════════
   function initDesktopIcons() {
     document.querySelectorAll('.desktop-icon').forEach(icon => {
-      icon.addEventListener('click', function() {
+      let lastTap = 0;
+
+      icon.addEventListener('click', function(e) {
         document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
         this.classList.add('selected');
+
+        // Mobil / dokunmatik ekranlarda tek dokunuşla aç
+        const isMobileOrTouch = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        if (isMobileOrTouch && typeof this.ondblclick === 'function') {
+          this.ondblclick(e);
+          return;
+        }
+
+        // Masaüstünde hızlı çift tıklama yedeği
+        const now = Date.now();
+        if (now - lastTap < 350 && typeof this.ondblclick === 'function') {
+          this.ondblclick(e);
+        }
+        lastTap = now;
       });
     });
 
