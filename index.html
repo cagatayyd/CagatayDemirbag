@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C:\> Çağatay Demirbağ</title>
+  <meta name="description" content="Çağatay Demirbağ — Software Developer & DevOps Engineer" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/windows.css" />
+  <link rel="stylesheet" href="css/terminal.css" />
+  <link rel="stylesheet" href="css/retro.css" />
+</head>
+<body>
+  <!-- Dil Ayarı -->
+  <script>window.LANG = 'tr';</script>
+
+  <!-- ░░ BACKGROUND GIF ░░ -->
+  <div class="bg-gif">
+    <img src="assets/a.gif" alt="background" onerror="this.style.display='none'" />
+  </div>
+
+  <!-- ░░ CRT OVERLAY EFFECTS ░░ -->
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="noise" id="noiseCanvas"></div>
+
+  <!-- ░░ NAVBAR ░░ -->
+  <nav class="retro-nav" id="retroNav">
+    <div class="nav-left">
+      <span class="nav-prompt">C:\&gt;</span>
+      <span class="nav-title">Çağatay Demirbağ</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link active" onclick="return false;">Home</a>
+      <a href="#" class="nav-link" onclick="openWindow('about'); return false;">About</a>
+      <a href="#" class="nav-link" onclick="openWindow('projects'); return false;">Projects</a>
+      <a href="#" class="nav-link" onclick="openWindow('skills'); return false;">Skills</a>
+      <a href="#" class="nav-link" onclick="openWindow('contact'); return false;">Contact</a>
+      
+      <!-- Dil Seçici -->
+      <div class="nav-lang">
+        <a href="index.html" class="active">TR</a>
+        <span class="nav-lang-sep">|</span>
+        <a href="index-en.html">EN</a>
+      </div>
+    </div>
+    <div class="nav-clock" id="navClock">00:00</div>
+    <div class="nav-winbtn" onclick="toggleFullscreen()" title="Tam ekran">□</div>
+  </nav>
+
+  <!-- ░░ DESKTOP ░░ -->
+  <main class="desktop" id="desktop">
+
+    <!-- Desktop Icons (Sol Kolon) -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" ondblclick="openWindow('about')">
+        <div class="icon-img">
+          <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="6" width="40" height="30" rx="1" fill="#c8a84b"/>
+            <rect x="0" y="6" width="40" height="4" rx="1" fill="#a08030"/>
+            <rect x="4" y="14" width="32" height="2" rx="1" fill="#7a6020" opacity="0.6"/>
+            <rect x="4" y="19" width="28" height="2" rx="1" fill="#7a6020" opacity="0.6"/>
+            <rect x="4" y="24" width="24" height="2" rx="1" fill="#7a6020" opacity="0.6"/>
+            <rect x="2" y="1" width="20" height="8" rx="1" fill="#e0b84e"/>
+            <rect x="2" y="1" width="20" height="3" rx="1" fill="#b89030"/>
+          </svg>
+        </div>
+        <span class="icon-label">hakkimda.txt</span>
+      </div>
+
+      <div class="desktop-icon" ondblclick="openWindow('projects')">
+        <div class="icon-img">
+          <svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="8" width="40" height="26" rx="1" fill="#c8a84b"/>
+            <path d="M0 8 H18 L22 3 H40 V8 Z" fill="#e0c060"/>
+            <rect x="4" y="15" width="32" height="2" rx="1" fill="#7a6020" opacity="0.5"/>
+            <rect x="4" y="21" width="28" height="2" rx="1" fill="#7a6020" opacity="0.5"/>
+          </svg>
+        </div>
+        <span class="icon-label">projeler/</span>
+      </div>
+
+      <div class="desktop-icon" ondblclick="openWindow('skills')">
+        <div class="icon-img">
+          <svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="8" width="40" height="26" rx="1" fill="#a89040"/>
+            <path d="M0 8 H18 L22 3 H40 V8 Z" fill="#c8aa50"/>
+            <rect x="4" y="15" width="32" height="2" rx="1" fill="#6a5010" opacity="0.5"/>
+            <rect x="4" y="21" width="20" height="2" rx="1" fill="#6a5010" opacity="0.5"/>
+          </svg>
+        </div>
+        <span class="icon-label">yetenekler/</span>
+      </div>
+
+      <div class="desktop-icon" ondblclick="openWindow('contact')">
+        <div class="icon-img">
+          <svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="8" width="40" height="26" rx="1" fill="#a89040"/>
+            <path d="M0 8 H18 L22 3 H40 V8 Z" fill="#c8aa50"/>
+            <rect x="4" y="15" width="32" height="2" rx="1" fill="#6a5010" opacity="0.5"/>
+            <rect x="4" y="21" width="24" height="2" rx="1" fill="#6a5010" opacity="0.5"/>
+          </svg>
+        </div>
+        <span class="icon-label">iletisim/</span>
+      </div>
+
+      <div class="desktop-icon" ondblclick="openWindow('recycle')">
+        <div class="icon-img">
+          <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="10" width="28" height="28" rx="2" fill="#555" stroke="#888" stroke-width="1"/>
+            <rect x="0" y="8" width="36" height="5" rx="1" fill="#666"/>
+            <rect x="12" y="3" width="12" height="6" rx="1" fill="#555" stroke="#888" stroke-width="1"/>
+            <line x1="10" y1="16" x2="10" y2="32" stroke="#888" stroke-width="2"/>
+            <line x1="18" y1="16" x2="18" y2="32" stroke="#888" stroke-width="2"/>
+            <line x1="26" y1="16" x2="26" y2="32" stroke="#888" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="icon-label">geridonusum.bin</span>
+      </div>
+
+      <div class="desktop-icon" ondblclick="openWindow('terminal')">
+        <div class="icon-img">
+          <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="32" rx="2" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+            <rect x="0" y="0" width="40" height="6" rx="2" fill="#333"/>
+            <circle cx="6" cy="3" r="1.5" fill="#c0392b"/>
+            <circle cx="11" cy="3" r="1.5" fill="#f39c12"/>
+            <circle cx="16" cy="3" r="1.5" fill="#27ae60"/>
+            <text x="4" y="20" font-family="monospace" font-size="8" fill="#d4813a">&gt;_</text>
+          </svg>
+        </div>
+        <span class="icon-label">cmd.exe</span>
+      </div>
+    </div>
+
+    <!-- Desktop Icons (Sağ Kolon - CV'ler) -->
+    <div class="desktop-icons-right">
+      <div class="desktop-icon" ondblclick="window.open('assets/CV-tr.pdf', '_blank')">
+        <div class="icon-img">
+          <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 4C0 1.79086 1.79086 0 4 0H20L32 12V36C32 38.2091 30.2091 40 28 40H4C1.79086 40 0 38.2091 0 36V4Z" fill="#c0392b"/>
+            <path d="M20 0V12H32" fill="#e74c3c"/>
+            <text x="5" y="26" font-family="monospace" font-size="11" fill="#fff" font-weight="bold">PDF</text>
+          </svg>
+        </div>
+        <span class="icon-label">CV-tr.pdf</span>
+      </div>
+      <div class="desktop-icon" ondblclick="window.open('assets/CV-en.pdf', '_blank')">
+        <div class="icon-img">
+          <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 4C0 1.79086 1.79086 0 4 0H20L32 12V36C32 38.2091 30.2091 40 28 40H4C1.79086 40 0 38.2091 0 36V4Z" fill="#2980b9"/>
+            <path d="M20 0V12H32" fill="#3498db"/>
+            <text x="5" y="26" font-family="monospace" font-size="11" fill="#fff" font-weight="bold">PDF</text>
+          </svg>
+        </div>
+        <span class="icon-label">CV-en.pdf</span>
+      </div>
+    </div>
+
+    <!-- Hero Text -->
+    <div class="hero-text">
+      <p class="hero-greeting">Merhaba,</p>
+      <h1 class="hero-name">Çağatay<br>Demirbağ</h1>
+      <p class="hero-title">Software Developer &amp; DevOps Engineer</p>
+      <button class="retro-btn" onclick="openWindow('projects')">
+        Projelerimi Keşfet &nbsp;&rarr;
+      </button>
+    </div>
+
+    <!-- Hero Photo -->
+    <div class="hero-photo">
+      <div class="polaroid">
+        <img src="assets/efso1.png" alt="Çağatay Demirbağ" onerror="this.style.opacity='0.3'" />
+        <div class="polaroid-caption">
+          <span>Better</span>
+          <span>Code</span>
+          <span>Better</span>
+          <span>Tomorrow</span>
+          <span class="hand-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Corner sticky note -->
+    <div class="corner-note">
+      Küçük adımlar<br>büyük projelere<br>götürür. :)
+    </div>
+
+    <!-- Sol alt hint notu -->
+    <div class="desktop-hint">
+      <i class="fa-regular fa-hand-pointer"></i> Dosyaya çift tıklayın
+    </div>
+
+  </main>
+
+  <!-- ════════════════════════════════════════════════
+       POPUP WINDOWS
+  ════════════════════════════════════════════════ -->
+
+  <!-- ── ABOUT ── -->
+  <div class="win-window" id="win-about" style="top:75px; left:42%; width:660px;">
+    <div class="win-titlebar" data-win="about">
+      <div class="win-titlebar-left">
+        <span class="win-icon-small">📁</span>
+        <span class="win-title">hakkimda.txt</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-min" onclick="minimizeWindow('about')">─</button>
+        <button class="win-btn win-max" onclick="maximizeWindow('about')">□</button>
+        <button class="win-btn win-close" onclick="closeWindow('about')">✕</button>
+      </div>
+    </div>
+    <div class="win-body">
+      <div class="about-content">
+        <div class="about-photo">
+          <img src="assets/profile.jpg" alt="Çağatay" onerror="this.src='assets/efso1.png'" />
+        </div>
+        <div class="about-text">
+          <h2>Hakkımda</h2>
+          <p>
+            Merhaba! Ben Çağatay.
+          </p>
+          <p>
+            Karabük Üniversitesi Bilgisayar Mühendisliği mezunuyum. Ana uzmanlık alanım C# ve .NET teknolojileri ile backend geliştirme olup, ölçeklenebilir ve sürdürülebilir servisler geliştirmeye odaklanıyorum. API tasarımı, servis mimarileri ve veri işleme süreçleri üzerinde aktif olarak çalışıyorum.
+          </p>
+          <p>
+            Backend geliştirme çalışmalarımın yanında DevOps süreçleri ve sistem yönetimi konularında da deneyim sahibiyim. Linux ortamlarında çalışan servislerin yönetimi, mesajlaşma altyapıları ve sistem izleme çözümleri üzerinde çalışarak uygulamaların güvenilirliğini ve sürdürülebilirliğini artırmaya odaklanıyorum. Bu kapsamda RabbitMQ, Elasticsearch ve sistem health check mekanizmaları gibi teknolojileri projelerimde aktif olarak kullanıyorum.
+          </p>
+          <p>
+            Ayrıca makine öğrenmesi ve RAG tabanlı veri analizi sistemleri üzerine çalışmalar yaparak veri odaklı çözümler geliştirmeye ilgi duyuyorum. Amacım; güçlü backend sistemleri geliştirebilen, aynı zamanda bu sistemlerin altyapısını ve operasyonel süreçlerini anlayıp yönetebilen bir yazılımcı olarak kendimi sürekli geliştirmektir.
+          </p>
+          <hr class="retro-hr" />
+          <p class="about-tags">
+            &gt; Software Developer &nbsp;|&nbsp; &gt; DevOps Engineer &nbsp;|&nbsp; &gt; C# / .NET &nbsp;|&nbsp; &gt; Problem Solver
+          </p>
+        </div>
+      </div>
+      <div class="win-footer-btns">
+        <a href="assets/CV-tr.pdf" target="_blank" class="win-action-btn">
+          <i class="fa-solid fa-file-pdf"></i> CV İndir
+        </a>
+        <button class="win-action-btn secondary" onclick="closeWindow('about')">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROJECTS ── -->
+  <div class="win-window" id="win-projects" style="top:100px; left:12%; width:560px;">
+    <div class="win-titlebar" data-win="projects">
+      <div class="win-titlebar-left">
+        <span class="win-icon-small">📁</span>
+        <span class="win-title">projeler/</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-min" onclick="minimizeWindow('projects')">─</button>
+        <button class="win-btn win-max" onclick="maximizeWindow('projects')">□</button>
+        <button class="win-btn win-close" onclick="closeWindow('projects')">✕</button>
+      </div>
+    </div>
+    <div class="win-body">
+      <!-- Sekme başlıkları -->
+      <div class="project-tabs">
+        <button class="project-tab-btn active" onclick="switchProjectTab('personal', this)">
+          📁 Kişisel Projeler
+        </button>
+        <button class="project-tab-btn" onclick="switchProjectTab('company', this)">
+          🏢 Şirket Projeleri
+        </button>
+      </div>
+
+      <!-- Kişisel Projeler -->
+      <div class="project-tab-pane active" id="tab-personal">
+        <div class="projects-grid" id="projectsGridPersonal"></div>
+      </div>
+
+      <!-- Şirket Projeleri -->
+      <div class="project-tab-pane" id="tab-company">
+        <div class="projects-grid" id="projectsGridCompany">
+          <div class="projects-empty">
+            &gt; Şirket projeleri yakında eklenecek...<br>
+            <span style="opacity:0.5;font-size:10px;">// Yakında</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="win-footer-btns">
+        <a href="https://github.com/cagatayyd" target="_blank" class="win-action-btn">
+          Tüm projeleri gör &nbsp;&rarr;
+        </a>
+        <button class="win-action-btn secondary" onclick="closeWindow('projects')">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SKILLS ── -->
+  <div class="win-window" id="win-skills" style="top:120px; left:30%; width:420px;">
+    <div class="win-titlebar" data-win="skills">
+      <div class="win-titlebar-left">
+        <span class="win-icon-small">📂</span>
+        <span class="win-title">yetenekler/</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-min" onclick="minimizeWindow('skills')">─</button>
+        <button class="win-btn win-max" onclick="maximizeWindow('skills')">□</button>
+        <button class="win-btn win-close" onclick="closeWindow('skills')">✕</button>
+      </div>
+    </div>
+    <div class="win-body">
+      <div class="skills-content" id="skillsContent"></div>
+      <button class="win-action-btn" onclick="closeWindow('skills')">Kapat</button>
+    </div>
+  </div>
+
+  <!-- ── CONTACT ── -->
+  <div class="win-window" id="win-contact" style="top:130px; left:40%; width:400px;">
+    <div class="win-titlebar" data-win="contact">
+      <div class="win-titlebar-left">
+        <span class="win-icon-small">📂</span>
+        <span class="win-title">iletisim/</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-min" onclick="minimizeWindow('contact')">─</button>
+        <button class="win-btn win-max" onclick="maximizeWindow('contact')">□</button>
+        <button class="win-btn win-close" onclick="closeWindow('contact')">✕</button>
+      </div>
+    </div>
+    <div class="win-body">
+      <div class="contact-links">
+        <a href="https://github.com/cagatayyd" target="_blank" class="contact-link">
+          <i class="fa-brands fa-github"></i> github.com/cagatayyd
+        </a>
+        <a href="https://linkedin.com/in/çağatay-demirbağ-805356212/" target="_blank" class="contact-link">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://instagram.com/cagatayyd/" target="_blank" class="contact-link">
+          <i class="fa-brands fa-instagram"></i> @cagatayyd
+        </a>
+        <a href="tel:+905452535800" class="contact-link">
+          <i class="fa-solid fa-phone"></i> +90 545 253 58 00
+        </a>
+        <a href="mailto:cagatayydemirbag@hotmail.com" class="contact-link">
+          <i class="fa-solid fa-envelope"></i> cagatayydemirbag@hotmail.com
+        </a>
+      </div>
+      <hr class="retro-hr" />
+      <form class="contact-form" id="contactForm" onsubmit="sendEmail(event)">
+        <label>&gt; İsim:</label>
+        <input type="text" name="name" placeholder="Adın Soyadın" required />
+        <label>&gt; E-posta:</label>
+        <input type="email" name="email" placeholder="email@domain.com" required />
+        <label>&gt; Mesaj:</label>
+        <textarea name="message" rows="4" placeholder="Mesajını buraya yaz..." required></textarea>
+        <div class="form-actions">
+          <button type="submit" class="win-action-btn" id="sendBtn">
+            <i class="fa-solid fa-paper-plane"></i> Gönder
+          </button>
+          <button type="button" class="win-action-btn secondary" onclick="closeWindow('contact')">Kapat</button>
+        </div>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── RECYCLE BIN (Easter Egg) ── -->
+  <div class="win-window" id="win-recycle" style="top:150px; left:35%; width:380px;">
+    <div class="win-titlebar" data-win="recycle">
+      <div class="win-titlebar-left">
+        <span class="win-icon-small">🗑️</span>
+        <span class="win-title">Geri Dönüşüm Kutusu</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-min" onclick="minimizeWindow('recycle')">─</button>
+        <button class="win-btn win-max" onclick="maximizeWindow('recycle')">□</button>
+        <button class="win-btn win-close" onclick="closeWindow('recycle')">✕</button>
+      </div>
+    </div>
+    <div class="win-body recycle-body">
+      <div class="recycle-items">
+        <div class="recycle-item">📄 eski_cv_v1.docx</div>
+        <div class="recycle-item">📄 eski_cv_v2_FINAL.docx</div>
+        <div class="recycle-item">📄 eski_cv_v2_FINAL_son.docx</div>
+        <div class="recycle-item">💀 spaghetti_code.js</div>
+        <div class="recycle-item">😭 stackoverflow_cevaplari.txt</div>
+        <div class="recycle-item">🔥 production_hotfix_3am.patch</div>
+        <div class="recycle-item">☕ kahvesiz_yazılım.idea</div>
+        <div class="recycle-item">🎮 oyun_oynuyordum_ama_dev_oldum.exe</div>
+        <div class="recycle-item">🐛 bug_sonra_bakarim.todo</div>
+      </div>
+      <p class="recycle-note">
+        &gt; 9 öğe geri dönüşüm kutusunda<br>
+        &gt; Kalıcı olarak sil? (y/n): <span class="blink">_</span>
+      </p>
+      <button class="win-action-btn" onclick="closeWindow('recycle')">Kapat</button>
+    </div>
+  </div>
+
+  <!-- ── TERMINAL ── -->
+  <div class="win-window win-terminal" id="win-terminal" style="top:390px; left:58%; width:470px;">
+    <div class="win-titlebar" data-win="terminal">
+      <div class="win-titlebar-left">
+        <span class="win-icon-small">⬛</span>
+        <span class="win-title">Terminal - cmd</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-min" onclick="minimizeWindow('terminal')">─</button>
+        <button class="win-btn win-max" onclick="maximizeWindow('terminal')">□</button>
+        <button class="win-btn win-close" onclick="closeWindow('terminal')">✕</button>
+      </div>
+    </div>
+    <div class="win-body terminal-body" id="terminalBody" onclick="document.getElementById('terminalInput').focus()">
+      <div class="terminal-output" id="terminalOutput"></div>
+      <div class="terminal-input-row">
+        <span class="term-prompt">C:\&gt;&nbsp;</span>
+        <input
+          type="text"
+          class="terminal-input"
+          id="terminalInput"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░ TASKBAR ░░ -->
+  <footer class="taskbar">
+    <div class="taskbar-left">
+      <span class="tb-prompt">C:\&gt;</span>
+      <span class="tb-name">Çağatay Demirbağ</span>
+      <span class="tb-sep">|</span>
+      <span class="tb-year" id="currentYear">2025</span>
+    </div>
+    <div class="taskbar-right">
+      <a href="https://github.com/cagatayyd" target="_blank" class="tb-social" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/çağatay-demirbağ-805356212/" target="_blank" class="tb-social" title="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+      <a href="mailto:cagatayydemirbag@hotmail.com" class="tb-social" title="Mail">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/windows.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

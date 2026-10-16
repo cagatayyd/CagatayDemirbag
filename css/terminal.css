@@ -1,0 +1,180 @@
+/* ══════════════════════════════════════════════════
+   TERMINAL.CSS — CMD terminal pencere stilleri
+══════════════════════════════════════════════════ */
+
+/* Terminal window override */
+.win-terminal .win-titlebar {
+  background: linear-gradient(
+    to bottom,
+    rgba(48, 36, 18, 0.99),
+    rgba(32, 24, 12, 0.99)
+  );
+}
+
+.terminal-body {
+  padding: 10px 12px !important;
+  background: rgba(20, 16, 11, 0.97);
+  font-family: 'Share Tech Mono', 'Courier New', monospace !important;
+  font-size: 13.5px;
+  height: 300px;
+  max-height: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: text;
+}
+.win-window.win-maximized .terminal-body {
+  max-height: none;
+  height: 100%;
+}
+
+/* ── Output area ── */
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--amber-dim) transparent;
+}
+.terminal-output::-webkit-scrollbar { width: 4px; }
+.terminal-output::-webkit-scrollbar-thumb { background: var(--amber-dim); }
+
+/* Individual lines */
+.term-line,
+.terminal-output > div {
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0;
+  animation: termTypein 0.05s ease;
+}
+
+@keyframes termTypein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Line types */
+.cmd-echo,
+.term-line.cmd-echo {
+  color: var(--amber-bright);
+}
+.term-line.cmd-echo::before {
+  content: 'C:\\> ';
+  color: var(--amber);
+  opacity: 0.9;
+}
+
+.cmd-output,
+.term-line.cmd-output {
+  color: var(--text-primary);
+  padding-left: 0;
+}
+
+.cmd-dim,
+.term-line.cmd-dim {
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
+.cmd-success,
+.term-line.cmd-success {
+  color: #7cd488;
+}
+
+.cmd-error,
+.term-line.cmd-error {
+  color: #f07575;
+}
+
+.cmd-warn,
+.term-line.cmd-warn {
+  color: #f0c05a;
+}
+
+.cmd-info,
+.term-line.cmd-info {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.cmd-header,
+.term-line.cmd-header {
+  color: var(--amber-bright);
+  font-size: 13.5px;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.cmd-empty,
+.term-line.cmd-empty {
+  height: 8px;
+  display: block;
+}
+
+/* Highlighted text within a line */
+.term-hl {
+  color: var(--amber-bright);
+  font-weight: bold;
+}
+.term-dim {
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
+/* ASCII art / decorative blocks */
+.term-ascii {
+  color: var(--amber-dim);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+/* ── Input row ── */
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
+  border-top: 1px solid rgba(212, 129, 58, 0.15);
+  margin-top: 2px;
+}
+
+.term-prompt {
+  color: var(--amber);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--amber-bright);
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 13px;
+  caret-color: var(--amber-bright);
+  padding: 0;
+  line-height: 1.6;
+}
+
+.terminal-input::selection {
+  background: rgba(212, 129, 58, 0.3);
+}
+
+/* ── Boot sequence animation ── */
+@keyframes termBoot {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+.term-boot { animation: termBoot 0.3s ease forwards; }
+
+/* ── Typing indicator ── */
+.term-typing::after {
+  content: '█';
+  animation: blink 0.8s step-end infinite;
+  color: var(--amber-bright);
+}
