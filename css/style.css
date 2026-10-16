@@ -963,3 +963,112 @@ html, body {
   }
 }
 
+/* ── Mobil Yatay (Landscape) Mod Desteği ── */
+@media (max-height: 540px) and (orientation: landscape) {
+  :root {
+    --nav-height: 36px;
+    --taskbar-height: 30px;
+  }
+
+  /* Soldaki 6 ikonu 2 sütunlu kompakt ızgara yap (alta taşmasını önler) */
+  .desktop-icons {
+    top: 8px;
+    bottom: auto;
+    left: 10px;
+    right: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 66px);
+    gap: 4px 6px;
+  }
+
+  .desktop-icon {
+    width: 66px;
+    padding: 3px 2px;
+  }
+
+  .icon-img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+  }
+  .icon-img svg {
+    width: 28px;
+    height: 26px;
+  }
+
+  .icon-label {
+    font-size: 10px;
+    padding: 1px 3px;
+  }
+
+  /* Sağdaki CV ikonları da kompakt olsun */
+  .desktop-icons-right {
+    top: 8px;
+    right: 10px;
+    gap: 6px;
+  }
+
+  /* Tanıtım yazısı sol ikonların sağında ortalansın */
+  .hero-text {
+    top: 46%;
+    left: 165px;
+    right: 90px;
+    transform: translateY(-50%);
+    max-width: 400px;
+  }
+
+  .hero-greeting {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .hero-name {
+    font-size: 36px;
+    margin-bottom: 4px;
+  }
+  .hero-title {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  .hero-desc {
+    font-size: 11px;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .retro-btn {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .desktop-hint {
+    bottom: 4px;
+    left: 165px;
+    right: auto;
+    text-align: left;
+    font-size: 10px;
+  }
+
+  /* Açılan pencereler yatay ekrana tam sığsın */
+  .win-window {
+    top: 40px !important;
+    left: 6vw !important;
+    width: 88vw !important;
+    max-height: calc(100vh - var(--nav-height) - var(--taskbar-height) - 8px) !important;
+  }
+
+  .about-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+    max-height: 42vh;
+  }
+
+  .terminal-body {
+    height: 170px;
+    max-height: 45vh;
+  }
+}
+
+
