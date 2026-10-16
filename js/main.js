@@ -147,7 +147,7 @@
   };
 
   // ══════════════════════════════════════════════════
-  //   SKİLL BARLARI RENDER ET (animasyonlu)
+  //   YETENEKLERİ ROZET (TAG) OLARAK RENDER ET
   // ══════════════════════════════════════════════════
   function renderSkills() {
     const container = document.getElementById('skillsContent');
@@ -159,47 +159,19 @@
       catDiv.className = 'skill-category';
       catDiv.innerHTML = `<div class="skill-category-title">[ ${group.category} ]</div>`;
 
+      const tagsWrap = document.createElement('div');
+      tagsWrap.className = 'skill-tags';
+
       group.items.forEach(skill => {
-        const row = document.createElement('div');
-        row.className = 'skill-item';
-        row.innerHTML = `
-          <span class="skill-name">${skill.name}</span>
-          <div class="skill-bar-container">
-            <div class="skill-bar" style="width:0%" data-pct="${skill.pct}"></div>
-          </div>
-          <span class="skill-pct">${skill.pct}%</span>
-        `;
-        catDiv.appendChild(row);
+        const badge = document.createElement('span');
+        badge.className = 'skill-badge';
+        const skillName = typeof skill === 'string' ? skill : skill.name;
+        badge.innerHTML = `<span class="skill-badge-dot">&gt;</span> ${skillName}`;
+        tagsWrap.appendChild(badge);
       });
 
+      catDiv.appendChild(tagsWrap);
       container.appendChild(catDiv);
-    });
-
-    // Animasyon: pencere açılınca barları doldur
-    observeSkillsWindow();
-  }
-
-  function observeSkillsWindow() {
-    const skillsWin = document.getElementById('win-skills');
-    if (!skillsWin) return;
-
-    let animated = false;
-    const observer = new MutationObserver(() => {
-      if (skillsWin.classList.contains('win-visible') && !animated) {
-        animated = true;
-        setTimeout(animateSkillBars, 150);
-      }
-      if (!skillsWin.classList.contains('win-visible')) {
-        animated = false; // reset for next open
-      }
-    });
-    observer.observe(skillsWin, { attributes: true, attributeFilter: ['class'] });
-  }
-
-  function animateSkillBars() {
-    document.querySelectorAll('.skill-bar').forEach(bar => {
-      const pct = bar.dataset.pct || 0;
-      bar.style.width = pct + '%';
     });
   }
 

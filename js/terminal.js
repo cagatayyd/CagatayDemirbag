@@ -151,16 +151,8 @@ const initTerminal = function() {
       const skillGroups = (typeof SITE_DATA !== 'undefined') ? SITE_DATA.skills : [];
       skillGroups.forEach(group => {
         addLine(`[ ${escHtml(toAscii(group.category))} ]`, 'cmd-warn');
-        group.items.forEach(s => {
-          const bars = Math.round(s.pct / 5);
-          const filled = '#'.repeat(bars);
-          const empty  = '-'.repeat(20 - bars);
-          addLine(
-            `<span style="display:inline-block;width:120px">${escHtml(toAscii(s.name))}</span>` +
-            `<span style="color:var(--amber)">[${filled}</span>` +
-            `<span class="term-dim">${empty}] ${s.pct}%</span>`
-          );
-        });
+        const names = group.items.map(s => escHtml(toAscii(typeof s === 'string' ? s : s.name))).join('  |  ');
+        addLine(`  &gt; <span class="term-hl">${names}</span>`);
         addEmpty();
       });
     },
