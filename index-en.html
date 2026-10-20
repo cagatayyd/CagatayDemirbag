@@ -287,35 +287,31 @@
     </div>
     <div class="win-body">
       <!-- Sekme başlıkları -->
+      <!-- Tab Buttons -->
       <div class="project-tabs">
         <button class="project-tab-btn active" onclick="switchProjectTab('personal', this)">
-          📁 Kişisel Projeler
+          📁 Personal Projects
         </button>
         <button class="project-tab-btn" onclick="switchProjectTab('company', this)">
-          🏢 Şirket Projeleri
+          🏢 Company Projects
         </button>
       </div>
 
-      <!-- Kişisel Projeler -->
+      <!-- Personal Projects -->
       <div class="project-tab-pane active" id="tab-personal">
         <div class="projects-grid" id="projectsGridPersonal"></div>
       </div>
 
-      <!-- Şirket Projeleri -->
+      <!-- Company Projects -->
       <div class="project-tab-pane" id="tab-company">
-        <div class="projects-grid" id="projectsGridCompany">
-          <div class="projects-empty">
-            &gt; Şirket projeleri yakında eklenecek...<br>
-            <span style="opacity:0.5;font-size:10px;">// Yakında</span>
-          </div>
-        </div>
+        <div class="projects-grid" id="projectsGridCompany"></div>
       </div>
 
       <div class="win-footer-btns">
         <a href="https://github.com/cagatayyd" target="_blank" class="win-action-btn">
-          Tüm projeleri gör &nbsp;&rarr;
+          View all on GitHub &nbsp;&rarr;
         </a>
-        <button class="win-action-btn secondary" onclick="closeWindow('projects')">Kapat</button>
+        <button class="win-action-btn secondary" onclick="closeWindow('projects')">Close</button>
       </div>
     </div>
   </div>
