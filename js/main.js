@@ -84,9 +84,17 @@
     card.className = 'project-card';
     card.onclick = () => { if (p.url) window.open(p.url, '_blank'); };
 
-    const thumb = p.thumb
-      ? `<img class="project-thumb" src="${p.thumb}" alt="${p.name}" loading="lazy">`
-      : `<div class="project-thumb-placeholder">${p.emoji || '📁'}</div>`;
+    const imgSource = p.thumb || p.logo;
+    let thumb;
+    if (imgSource) {
+      thumb = `<div class="project-thumb-logo">
+                 <img src="${imgSource}" alt="${p.name} logo" loading="lazy"
+                      onerror="this.parentElement.classList.add('logo-failed'); this.remove();">
+                 <span class="logo-fallback">${p.emoji || '🏢'}</span>
+               </div>`;
+    } else {
+      thumb = `<div class="project-thumb-placeholder">${p.emoji || '📁'}</div>`;
+    }
 
     const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
     const desc = (window.LANG === 'en' && p.descEn) ? p.descEn : p.desc;

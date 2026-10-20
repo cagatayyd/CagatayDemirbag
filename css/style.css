@@ -557,6 +557,40 @@ html, body {
   border-bottom: 1px solid var(--border);
 }
 
+/* Proje görsel / logo alanı */
+.project-thumb-logo {
+  width: 100%;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding: 8px 14px;
+}
+.project-thumb-logo img {
+  max-width: 82%;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.2s;
+}
+.project-card:hover .project-thumb-logo img {
+  transform: scale(1.05);
+}
+.project-thumb-logo .logo-fallback {
+  display: none;
+  font-size: 28px;
+}
+.project-thumb-logo.logo-failed {
+  background: linear-gradient(135deg, #281f15, #3a2b1c);
+}
+.project-thumb-logo.logo-failed .logo-fallback {
+  display: block;
+}
+
 .project-info {
   padding: 10px 12px;
 }
